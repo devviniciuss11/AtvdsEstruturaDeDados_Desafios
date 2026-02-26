@@ -16,7 +16,7 @@ public class FilaDeAtendimento {
             System.out.println("Digite 5 para realizar o atendimento de alguem da fila");
             System.out.println("Digite 6 para inserir um cliente com prioridade na fila");
             System.out.println("Digite 7 para fazer uma busca por pessoas na fila");
-            System.out.println("Digite 8 para ver a posicao de alguem na fila");
+            System.out.println("Digite 8 para fazer um atendimento automaico");
             System.out.println("Digite 9 para sair do sistema");
             int escolha = sc1.nextInt();
             switch (escolha){
@@ -60,21 +60,44 @@ public class FilaDeAtendimento {
                     fila.addFirst(prio);
                     break;
                 case 7:
-                    System.out.println("Digite o nome do cliente que esta procurando na fila:");
-                    Scanner sc4 = new Scanner(System.in);
+                    System.out.println("Digite o nome do cliente que está procurando na fila:");
+                    sc1.nextLine();
+                    String procurar = sc1.nextLine();
 
-                    String procurar = sc4.nextLine();
-                    for(int i = 0;fila.size()>i;i++){
-                            if(fila.get(i).equalsIgnoreCase(procurar)){
-                                System.out.println("O cliente esta na fila na posicao "+ i+1);
-                            }
-                            else {
-                                System.out.println("o clinte nao esta na posicao "+ i+1 +" da fila");
-                            }
-                        }
+                    int posicao = fila.indexOf(procurar);
+
+                    if (posicao != -1) {
+                        System.out.println("O cliente está na fila na posição " + (posicao + 1));
+                    } else {
+                        System.out.println("Cliente não encontrado na fila.");
+                    }
                     break;
 
                 case 8:
+
+                    while(!fila.isEmpty()){
+                        String atendido = fila.poll();
+                        System.out.println("Atendendo: "+ atendido);
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    System.out.println("\nFila encerrada. Não há mais pessoas.");
+                    System.out.println("\n");
+                    break;
+                case 9:
+                    System.out.println("saindo do sistema . . . .");
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    System.out.println("tchau!");
+                    sair = 9;
+                    break;
+
 
             }
 
