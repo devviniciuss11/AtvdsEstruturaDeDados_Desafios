@@ -9,7 +9,7 @@ public class Implementandoumapilhanaprática {
     public Implementandoumapilhanaprática(int capacidade) {
         this.capacidade = capacidade;
         this.elementos = new int[capacidade];
-        this.topo = -1; // pilha começa vazia
+        this.topo = -1;
     }
 
     public boolean estaVazia() {
